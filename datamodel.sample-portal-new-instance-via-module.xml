@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+	<portals>
+		<portal id="sample-portal-new-instance-via-module" _delta="define">
+			<url>pages/exec.php?exec_module=itop-portal-base&amp;exec_page=index.php&amp;portal_id=sample-portal-new-instance-via-module</url>
+			<rank>2.0</rank>
+			<handler />
+			<allow>
+			</allow>
+			<deny />
+		</portal>
+	</portals>
+	<module_designs>
+		<module_design id="sample-portal-new-instance-via-module" _delta="define">
+			<properties>
+				<name>Portal via module</name>
+			</properties>
+			<bricks>
+				<brick id="contacts" xsi:type="Combodo\iTop\Portal\Brick\BrowseBrick">
+					<active>true</active>
+					<width>12</width>
+					<rank>
+						<default>10</default>
+					</rank>
+					<title>
+						<default>Contacts</default>
+					</title>
+					<description>Browse through contacts directory</description>
+					<decoration_class>
+						<default>fa fa-user-circle-o fa-2x</default>
+					</decoration_class>
+					<levels>
+						<level id="1">
+							<class>Organization</class>
+							<title>Class:Organization</title>
+							<parent_att/>
+							<actions>
+								<action id="drilldown" xsi:type="drilldown"/>
+							</actions>
+							<levels>
+								<level id="1">
+									<class>Person</class>
+									<title>Class:Person</title>
+									<parent_att>org_id</parent_att>
+									<fields>
+										<field id="first_name" />
+										<field id="function" />
+									</fields>
+									<actions>
+										<action id="view" xsi:type="view"/>
+									</actions>
+									<levels/>
+								</level>
+							</levels>
+						</level>
+					</levels>
+					<browse_modes>
+						<availables>
+							<mode id="list"/>
+							<mode id="tree"/>
+							<mode id="mosaic"/>
+						</availables>
+						<default>list</default>
+					</browse_modes>
+					<data_loading>full</data_loading>
+				</brick>
+			</bricks>
+			<classes>
+				<class id="Organization">
+					<scopes>
+						<scope id="all">
+							<oql_view><![CDATA[SELECT Organization]]></oql_view>
+							<ignore_silos>true</ignore_silos>
+						</scope>
+					</scopes>
+				</class>
+				<class id="Contact">
+					<scopes>
+						<scope id="all">
+							<oql_view><![CDATA[SELECT Contact]]></oql_view>
+							<ignore_silos>true</ignore_silos>
+						</scope>
+					</scopes>
+				</class>
+			</classes>
+		</module_design>
+	</module_designs>
+</itop_design>
